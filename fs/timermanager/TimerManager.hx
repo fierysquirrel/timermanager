@@ -6,8 +6,6 @@ package fs.timermanager;
  */
 class TimerManager
 {
-	public static var NAME : String = "Timer_MANAGER";
-	
 	private var timers : Array<Timer>;
 	/*
 	 * Constructor
@@ -29,7 +27,7 @@ class TimerManager
 	/*
 	 * duration in milliseconds
 	 * */
-	public function StartTimer(duration : Float, onComplete : Void -> Void, onRunning : Float -> Void = null) : Void
+	public function StartTimerTask(duration : Float, onComplete : Void -> Void, onRunning : Float -> Void = null) : Void
 	{
 		var timer : Timer;
 		
