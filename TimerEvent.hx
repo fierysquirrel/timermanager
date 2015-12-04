@@ -6,7 +6,7 @@ package;
  */
 class TimerEvent extends GameEvent
 {
-	public static var TYPE : String;
+	public static var TYPE : String = "TIMER_TASK_EVENT";
 	
 	public var duration : Float;
 	public var onComplete : Void -> Void;

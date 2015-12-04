@@ -1,48 +1,25 @@
 package;
 
-class Timer
+class Timer extends Task
 {
-	private var duration : Float;
-	private var hasEnded : Bool;
-	private var timer : Float;
-	private var onRunning : Float -> Void;
-	private var onComplete : Void -> Void;
-	
 	/*
 	 * Timer
 	 * @duration: in milliseconds
 	 */
 	public function new(duration : Float, onComplete : Void -> Void,onRunning : Float -> Void = null) 
 	{
-		this.duration = duration;
-		this.onRunning = onRunning;
-		this.onComplete = onComplete;
-		hasEnded = false;
-		timer = 0;
-	}
-	public function HasEnded() : Bool
-	{
-		return hasEnded;
+		super(duration, 0, 0, onComplete, onRunning);
 	}
 	
 	public function GetDuration() : Float
 	{
-		return duration;
+		return goal;
 	}
 	
-	public function Update(gameTime : Float) : Void
+	override public function Update(gameTime:Float):Void 
 	{
-		if (timer >= duration)
-		{
-			hasEnded = true;
-			onComplete();
-		}
-		else
-		{
-			if(onRunning != null)
-				onRunning(timer);
-				
-			timer += gameTime;
-		}
+		step = gameTime;
+		
+		super.Update(gameTime);
 	}
 }

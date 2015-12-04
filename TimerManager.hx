@@ -6,24 +6,25 @@ package;
  */
 class TimerManager
 {
-	private var timers : Array<Timer>;
+	private var tasks : Array<Task>;
 	/*
 	 * Constructor
 	 */
 	public function new() 
 	{
-		timers = new Array<Timer>();
+		tasks = new Array<Task>();
 	}
 	
 	public function Update(gameTime : Float) : Void
 	{
-		for (t in timers)
+		for (t in tasks)
 		{
 			t.Update(gameTime);
 			if (t.HasEnded())
-				timers.remove(t);
+				tasks.remove(t);
 		}
 	}
+	
 	/*
 	 * duration in milliseconds
 	 * */
@@ -32,6 +33,23 @@ class TimerManager
 		var timer : Timer;
 		
 		timer = new Timer(duration, onComplete, onRunning);
-		timers.push(timer);
+		tasks.push(timer);
+	}
+	
+	/*
+	 * duration in milliseconds
+	 * */
+	public function StartTask(goal : Float,ini : Float, step : Float, onComplete : Void -> Void, onRunning : Float -> Void = null) : Void
+	{
+		var task : Task;
+		
+		task = new Task(goal, ini, step, onComplete, onRunning);
+		tasks.push(task);
+	}
+	
+	public function Clean() : Void
+	{
+		while (tasks.length > 0)
+			tasks.pop();
 	}
 }
