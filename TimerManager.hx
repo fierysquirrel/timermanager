@@ -32,7 +32,7 @@ class TimerManager
 	{
 		var timer : Timer;
 		
-		timer = new Timer(duration, onComplete, onRunning);
+		timer = new Timer(duration,Timer.TimerType.Forward, onComplete, onRunning);
 		tasks.push(timer);
 	}
 	
@@ -50,6 +50,6 @@ class TimerManager
 	public function Clean() : Void
 	{
 		while (tasks.length > 0)
-			tasks.pop();
+			tasks.pop().Stop();
 	}
 }

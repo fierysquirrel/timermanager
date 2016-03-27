@@ -1,19 +1,44 @@
 package;
 
+enum TimerType
+{
+	Forward;
+	Backward;
+}
+
 class Timer extends Task
 {
+	private var type : TimerType;
+	private var duration : Float;
+	
 	/*
 	 * Timer
 	 * @duration: in milliseconds
 	 */
-	public function new(duration : Float, onComplete : Void -> Void,onRunning : Float -> Void = null) 
+	public function new(duration : Float,type : TimerType = null, onComplete : Void -> Void,onRunning : Float -> Void = null) 
 	{
-		super(duration, 0, 0, onComplete, onRunning);
+		var goal, ini : Float;
+		
+		this.type = type == null ? TimerType.Backward : type;
+		
+		this.duration = duration;
+		goal = 0.0;
+		ini = 0.0;
+		switch(type)
+		{
+			case TimerType.Forward:
+				goal = duration;
+				ini = 0;
+			case TimerType.Backward:
+				goal = 0;
+				ini = duration;
+		}
+		super(goal,ini, 0, onComplete, onRunning,true);
 	}
 	
 	public function GetDuration() : Float
 	{
-		return goal;
+		return duration;
 	}
 	
 	override public function Update(gameTime:Float):Void 
