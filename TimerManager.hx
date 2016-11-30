@@ -43,7 +43,7 @@ class TimerManager
 	{
 		var task : Task;
 		
-		task = new Task(goal, ini, step, onComplete, onRunning);
+		task = new Task(goal, ini, step, onComplete, onRunning,true);
 		tasks.push(task);
 	}
 	

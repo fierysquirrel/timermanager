@@ -6,7 +6,7 @@ package;
  */
 class TaskEvent extends GameEvent
 {
-	public static var TYPE : String = "TAST_EVENT";
+	public static var TYPE : String = "TASK_EVENT";
 	
 	public var goal : Float;
 	public var ini : Float;
